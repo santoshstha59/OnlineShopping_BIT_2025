@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OnlineShopping_BIT_2025.Models.Product>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<div style="display: flex; flex-direction:column; align-items: center; gap: 3rem;">
+
+<h1>Dashboard</h1>
+<form  asp-action="Dasboard" class="search-container">
+    <input type="text" name="title" placeholder="Search Products" class="search-input"/>
+    <i class="fas fa-search"></i>
+    <button class="search-button">Search</button>
+</form>
+</div>
+<table class="table">
+    
+    <tbody>
+        <tr>
+
+@foreach (var item in Model) {
+
+            <td class="Products">
+
+                    <img src="~/@item.ProductPhoto" width="100" height="100" /><br />
+                    @Html.DisplayFor(modelItem => item.Title)<br />
+                    Price :  $ @Html.DisplayFor(modelItem => item.Price)<br />
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+
+            </td>
+           
+       
+}
+        </tr>
+    </tbody>
+</table>
